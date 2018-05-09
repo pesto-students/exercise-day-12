@@ -1,39 +1,22 @@
-# Day 12
+**Questions**
 
-There are separate branches for Segment 1 and Segment 2 in this repository. Both segments include two things:
+1) What is the difference between a React Component and a React Element?
 
-1) Coding exercises
+2) Is `setState()` synchronous or asynchronous? Explain why?
 
-2) Written/Multiple Choice questions
+3) When to use class components over function components?
 
-The reason for two separate branches for two segments is to have separate test suites run on travis CI.
+4) What are `keys` in React and why are they important?
 
-### Instructions:
+5) What is reconciliation in React. Explain.
 
-1) Clone this repo using
+6) What is wrong with this code? Explain.
+
   ```
-    git clone <link to repo>
-  ```
-
-2) Change directory
-  ```
-    cd <Folder Name>
-  ```
-
-3) Install dependencies
-  ```
-    yarn
+    // Increment count state
+    this.setState({
+      count: this.state.count + 1,
+    });
   ```
 
-4) To do the exercises in branch `segment-1`
-  ```
-    git checkout -b segment-1
-    git pull origin segment-1
-  ```
-
-5) Do your work and then push to the branch
-  ```
-    git add .
-    git commit -m "your commit message"
-    git push origin segment-1
-  ```
+7) What is the difference between `React.Children.map(props.children, () => )` and `props.children.map(() => )`
