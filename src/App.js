@@ -9,12 +9,19 @@ const App = () => (
     <React.Fragment>
       <ul style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <li>
-          <NavLink to="/01" activeClassName="link--active">CreateElement</NavLink>
+          <NavLink to="/01" activeClassName="link--active">Hello World</NavLink>
         </li>
         <li>
-          <NavLink to="/02" activeClassName="link--active">First JSX</NavLink>
+          <NavLink to="/02" activeClassName="link--active">Movie List</NavLink>
+        </li>
+        <li>
+          <NavLink to="/03" activeClassName="link--active">Favorite Movie</NavLink>
+        </li>
+        <li>
+          <NavLink to="/04" activeClassName="link--active">Grocery List 1</NavLink>
         </li>
       </ul>
+      <hr />
       {routes.map(route => (
         <Route
           path={route.path}
