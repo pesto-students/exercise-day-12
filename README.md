@@ -1,4 +1,4 @@
-**Questions**
+## Questions
 
 1) What is the difference between a React Component and a React Element?
 
@@ -20,3 +20,21 @@
   ```
 
 7) What is the difference between `React.Children.map(props.children, () => )` and `props.children.map(() => )`
+
+---
+
+## Quiz
+
+Answer these questions after doing the exercises:
+
+1) What is the name of the class that we extend to create components class?
+
+2) JSX is converted directly into JavaScript. True or false?
+
+3) What's the name of the method that must be defined in every component?
+
+4) If I want to set `div` element's HTML class, what attribute should I declare in JSX?
+
+5) A component's properties can be changed after its initialization. True or false? If true, how?
+
+6) Why do we bind a component's methods (except `render`) to make it possible to change the state? Explain.
