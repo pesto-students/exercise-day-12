@@ -1,20 +1,24 @@
-import HelloWorld from './components/01-HelloWorld';
-import MovieList from './components/02-MovieList';
-import FavoriteMovie from './components/03-FavoriteMovie';
-import GroceryList from './components/04-GroceryList';
+import LifeCycle from './components/01-LifeCycle';
+import StopWatch from './components/02-StopWatch';
+import FetchGithubData from './components/03-FetchGithubData';
+import RenderProps from './components/04-RenderProps';
+import SnakeGame from './components/05-SnakeGame';
 
 const routes = [{
   path: '/01',
-  component: HelloWorld,
+  component: LifeCycle,
 }, {
   path: '/02',
-  component: MovieList,
+  component: StopWatch,
 }, {
   path: '/03',
-  component: FavoriteMovie,
+  component: FetchGithubData,
 }, {
   path: '/04',
-  component: GroceryList,
+  component: RenderProps,
+}, {
+  path: '/05',
+  component: SnakeGame,
 }];
 
 export default routes;
