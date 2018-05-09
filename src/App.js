@@ -7,7 +7,15 @@ import './App.css';
 const App = () => (
   <Router>
     <React.Fragment>
-      <ul style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+      <ul
+        className="nav"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          listStyle: 'none',
+        }}
+      >
         <li>
           <NavLink to="/01" activeClassName="link--active">Hello World</NavLink>
         </li>
@@ -18,7 +26,7 @@ const App = () => (
           <NavLink to="/03" activeClassName="link--active">Favorite Movie</NavLink>
         </li>
         <li>
-          <NavLink to="/04" activeClassName="link--active">Grocery List 1</NavLink>
+          <NavLink to="/04" activeClassName="link--active">Grocery List</NavLink>
         </li>
       </ul>
       <hr />
