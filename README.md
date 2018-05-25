@@ -1,3 +1,7 @@
+## Problem Set
+
+Open the `Problems` directory and implement the empty functions to pass all the tests.
+
 ## Questions
 
 1) What is the difference between a React Component and a React Element?
@@ -25,7 +29,7 @@
 
 ## Quiz
 
-Answer these questions after doing the exercises:
+Answer these questions after doing the React exercises:
 
 1) What is the name of the class that we extend to create components class?
 
