@@ -4,5 +4,6 @@
         "eslint",
         "git add"
       ]
-    }
+    },
+    "ignore": ['**/registerServiceWorker.js']
 }
