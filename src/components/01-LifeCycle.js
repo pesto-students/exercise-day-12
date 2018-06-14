@@ -36,6 +36,7 @@ class LifeCycle extends React.Component {
     //         console when the component unmounts.
   }
 
+  // Task 4: Create a button which triggers ComponentDidUpdate lifecycle method on click.
   render() {
     return (<p>Good morning, {this.state.name}!</p>);
   }
