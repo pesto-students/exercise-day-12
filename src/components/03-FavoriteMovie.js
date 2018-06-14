@@ -34,7 +34,6 @@ class FavoriteMovie extends Component {
     this.state = { movie: '' };
 
     // Warning! If we don't bind this method - we would not be able to update state.
-    this.onMovieChange = this.onMovieChange.bind(this);
   }
 
   /*
@@ -50,7 +49,7 @@ class FavoriteMovie extends Component {
   /* eslint-disable no-unused-vars, react/no-unused-state */
   onMovieChange(event) {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: 'ChangeME!', movie: event.target.value });
+    this.setState({ badAttribute: 'ChangeME!' });
   }
 
   render() {
