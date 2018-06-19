@@ -22,6 +22,9 @@ import React from 'react';
 class GroceryList extends React.Component {
   constructor(props) {
     super(props);
+    // this.alert = this.alert.bind(this);
+    // this.addName = this.addName.bind(this);
+    // this.clearAll = this.clearAll.bind(this);
     this.state = {
       groceries: [{ name: 'Apples' }, { name: 'KitKat' }, { name: 'Red Bull' }],
     };
