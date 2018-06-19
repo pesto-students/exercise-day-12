@@ -18,9 +18,23 @@ import React, { Component } from 'react';
 */
 
 class StopWatch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    this.start = this.start.bind(this);
+  }
+
+  start() {
+    // this.state.count = setInterval(this.state.count, 1000);
+    this.setState({ count: setInterval(this.state.count, 1000) });
+  }
   render() {
     return (
-      <div>Stop Watch</div>
+      <div>
+        Start Watch
+        <h1>{this.state.count}</h1>
+        <button onClick={this.start} />
+      </div>
     );
   }
 }
