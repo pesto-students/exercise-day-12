@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -36,9 +35,9 @@ class GroceryList extends React.Component {
 
   onSubmitHandler(event) {
     event.preventDefault();
-    this.setState((prevState) => {
-      return prevState.groceries.push({ name: this.state.grocery });
-    });
+    this.setState(prevState => ({
+      groceries: [...prevState.groceries, { name: this.state.grocery }],
+    }));
 
     this.setState({ grocery: '' });
   }
@@ -95,27 +94,23 @@ class GroceryListItem extends React.Component {
 
   groceryClickHandler(event) {
     const groceryName = event.target.textContent;
-    console.log(groceryName);
-    const exists = this.state.purchased.some(item => item === groceryName);
-    console.log("exists: ", exists);
-    if (exists) {
-      event.target.style.color = 'black';
+    const exists = this.state.purchased.indexOf(groceryName);
+    if (exists !== -1) {
+      event.target.style.color = 'black'; // eslint-disable-line
       this.setState(prevState => ({
-        purchased: prevState.purchased.filter(item => item !== groceryName)
+        purchased: prevState.purchased.filter(item => item !== groceryName),
       }));
     } else {
-      event.target.style.color = 'red';
+      event.target.style.color = 'red'; // eslint-disable-line
       this.setState(prevState => ({
-        purchased: prevState.purchased.push(groceryName),
-      }))
+        purchased: [...prevState.purchased, groceryName],
+      }));
     }
-
-    console.log(this.state);
   }
 
   render() {
     return (
-      <li onClick={this.groceryClickHandler}>
+      <li onClick={this.groceryClickHandler /* eslint-disable-line */}>
         {this.props.grocery.name}
       </li>
     );
@@ -124,7 +119,9 @@ class GroceryListItem extends React.Component {
 
 // Do prop validation here using the package `prop-types`
 GroceryListItem.propTypes = {
-  grocery: PropTypes.object.isRequired, // eslint-disable-line
+  grocery: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default GroceryList;
