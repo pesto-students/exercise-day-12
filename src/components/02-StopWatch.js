@@ -20,7 +20,9 @@ import React, { Component } from 'react';
 class StopWatch extends Component {
   render() {
     return (
-      <div>Stop Watch</div>
+      <div>Stop Watch
+        <button>Start</button>
+      </div>
     );
   }
 }
