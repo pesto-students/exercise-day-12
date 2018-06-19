@@ -46,13 +46,22 @@ class FavoriteMovie extends Component {
     Hint: use `console.log` to check `event.target`. You will find text entered to the input there.
   */
 
-  /* eslint-disable no-unused-vars, react/no-unused-state */
+  /* eslint-disable no-unused-vars, react/no-unused-state, no-console */
   onMovieChange(event) {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: 'ChangeME!' });
+    event.preventDefault();
+    return this.setState({ movie: event.target.value });
   }
 
   render() {
+    if (this.state.movie.length === 0) {
+      return (
+        <div>
+          <p>Hey there. Enter your favorite movie.</p>
+          <input type="text" name="name" onChange={this.onMovieChange} />
+        </div>
+      );
+    }
     return (
       <div>
         <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
