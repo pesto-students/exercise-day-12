@@ -18,7 +18,7 @@ Further reading on task #2: https://facebook.github.io/react/tips/if-else-in-JSX
 */
 
 class FavoriteMovie extends Component {
-/*
+  /*
   By default `this.state` is `null`. In `render` we are referring to
   a specific element from the `state` object - `this.state.movie`.
   If we don't set an initial state, we will get an error. It's impossible to fetch
@@ -31,7 +31,10 @@ class FavoriteMovie extends Component {
   constructor(props) {
     // Properties object is called `props`. You can access it with `this.props`.
     super(props);
-    this.state = { movie: '' };
+    this.onMovieChange = this.onMovieChange.bind(this);
+    this.state = {
+      movie: '',
+    };
 
     // Warning! If we don't bind this method - we would not be able to update state.
   }
@@ -49,10 +52,18 @@ class FavoriteMovie extends Component {
   /* eslint-disable no-unused-vars, react/no-unused-state */
   onMovieChange(event) {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: 'ChangeME!' });
+    this.setState({ movie: event.target.value });
   }
-
   render() {
+    if (this.state.movie === '') {
+      return (
+        <div>
+          <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
+          <input type="text" name="name" onChange={this.onMovieChange} />
+          <p style={{ color: 'red' }}>Enter a movie</p>
+        </div>
+      );
+    }
     return (
       <div>
         <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
