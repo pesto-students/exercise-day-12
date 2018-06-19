@@ -31,7 +31,7 @@ class FavoriteMovie extends Component {
   constructor(props) {
     // Properties object is called `props`. You can access it with `this.props`.
     super(props);
-    this.state = { movie: props };
+    this.state = { movie: this.props.it };
 
     // Warning! If we don't bind this method - we would not be able to update state.
   }
@@ -56,7 +56,7 @@ class FavoriteMovie extends Component {
     return (
       <div>
         <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
-        <input type="text" name="name" onChange={this.onMovieChange.bind} />
+        <input type="text" name="name" onChange={this.onMovieChange} value={this.state.input} />
       </div>
     );
   }
