@@ -44,7 +44,7 @@ class LifeCycle extends React.Component {
     return (
       <div>
         <p>Good morning, {this.state.name}!</p>
-        <button onClick={this.componentDidUpdate}>Click for ComponentDidUpdate</button>
+        <button onClick={this.componentDidUpdate}>Click</button>
       </div>
     );
   }
