@@ -5,7 +5,8 @@ You can pass props to components using JSX attributes.
 
 You have two tasks to complete in this exercise:
 Task #1: Someone left broken code in the `onMovieChange` method. It is always triggered
-  after changing the value of `movie` input. This method takes
+  after changing the value of `movie` input. This
+  method takes
   event as its only argument. You need to retrieve the input value from
   that object and update the `movie` field in the `state` object.
 Warning: Do not try to change the `render` structure.
@@ -32,7 +33,7 @@ class FavoriteMovie extends Component {
     // Properties object is called `props`. You can access it with `this.props`.
     super(props);
     this.state = { movie: '' };
-
+    this.onMovieChange = this.onMovieChange.bind(this);
     // Warning! If we don't bind this method - we would not be able to update state.
   }
 
@@ -49,14 +50,15 @@ class FavoriteMovie extends Component {
   /* eslint-disable no-unused-vars, react/no-unused-state */
   onMovieChange(event) {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: 'ChangeME!' });
+    this.setState({ movie: event.target.value });
   }
 
   render() {
     return (
       <div>
-        <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
-        <input type="text" name="name" onChange={this.onMovieChange} />
+        {this.state.movie.length ? <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p> :
+        <p>Hey there. Enter your favorite movie.</p>}
+        <input type="text" name="name" className="input" onChange={this.onMovieChange} />
       </div>
     );
   }
