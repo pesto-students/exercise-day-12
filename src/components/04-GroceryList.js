@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Do prop validation here using the package `prop-types`
+import PropTypes from 'prop-types';
+
 /*
   In this exercises, you'll will make a reactive grocery list.
 
@@ -24,7 +27,30 @@ class GroceryList extends React.Component {
     super(props);
     this.state = {
       groceries: [{ name: 'Apples' }, { name: 'KitKat' }, { name: 'Red Bull' }],
+      input: '',
     };
+    this.alert = this.alert.bind(this);
+    this.add = this.add.bind(this);
+    this.clear = this.clear.bind(this);
+  }
+
+  alert(event) {
+    this.setState({ input: event.target.value });
+  }
+
+  add() {
+    this.setState({
+      groceries: [...this.state.groceries, { name: this.state.input }],
+      input: '',
+    });
+  }
+
+  clear() {
+    this.setState({
+      groceries: [],
+      input: '',
+
+    });
   }
 
   render() {
@@ -43,7 +69,10 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        Put your code here
+        <ul> {groceriesComponents} </ul>
+        <input type="text" name="newItem" onChange={this.alert} value={this.state.input} />
+        <button onClick={this.add} > Add </button>
+        <button onClick={this.clear} > Clear </button>
       </div>
     );
   }
@@ -60,12 +89,14 @@ class GroceryListItem extends React.Component {
   render() {
     return (
       <li>
-        Put your code here.
+        {this.props.grocery.name}
       </li>
     );
   }
 }
 
-// Do prop validation here using the package `prop-types`
+GroceryListItem.propTypes = {
+  grocery: PropTypes.isRequired,
+};
 
 export default GroceryList;
