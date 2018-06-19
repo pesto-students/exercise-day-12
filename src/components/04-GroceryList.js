@@ -43,7 +43,9 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        Put your code here
+        <p>Add Grocery Items <span style={{ color: 'blue' }}>{this.state.value}</span></p>
+        <input type="text" name="name" value={this.state.input} />
+        <button id="add" className="a" onClick="AddItem" text="Add Item" />
       </div>
     );
   }
