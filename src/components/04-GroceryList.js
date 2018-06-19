@@ -43,7 +43,11 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        Put your code here
+        <ul>
+          <li>{this.state.groceries[0].name}</li>
+          <li>{this.state.groceries[1].name}</li>
+          <li>{this.state.groceries[2].name}</li>
+        </ul>
       </div>
     );
   }
