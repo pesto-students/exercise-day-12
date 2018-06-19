@@ -17,6 +17,7 @@ class LifeCycle extends React.Component {
   // This code will be called when the component finishes mounting
   // (so it is visible for a user).
   componentDidMount() {
+    console.log("I'm mounted");
     // Task 1: Display a message "I'm mounted!" in developer's console when the
     //         component finishes mounting.
     //         Use `console.log` function for it.
@@ -28,17 +29,24 @@ class LifeCycle extends React.Component {
     //         Here you also need to use the console.log function.
     //         Notice that in this lifecycle method you have an access
     //         to previous values of properties and state.
+    console.log('Updated!');
     console.log({ prevProps, prevState });
   }
 
   componentWillUnmount() {
     // Task 3: Display a message "Good night, Pesto!" in developer's
     //         console when the component unmounts.
+    console.log('Good night, Pesto!');
   }
 
   // Task 4: Create a button which triggers ComponentDidUpdate lifecycle method on click.
   render() {
-    return (<p>Good morning, {this.state.name}!</p>);
+    return (
+      <div>
+        <p>Good morning, {this.state.name}!</p>
+        <button onClick={this.componentDidUpdate}>CLICK ME</button>
+      </div>
+    );
   }
 }
 
