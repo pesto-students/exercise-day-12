@@ -16,11 +16,37 @@ import React, { Component } from 'react';
 *
 *  Clicking Clear will stop the timer if it's running and reset the lapsed time to 0.
 */
-
+const formattedSeconds = sec =>
+  `${Math.floor(sec / 60)
+  }:${
+    (`0${sec % 60}`).slice(-2)}`;
 class StopWatch extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      secondsElapsed: 0,
+    };
+    this.incrementer = null;
+  }
+  startTimer() {
+    this.incrementer = setInterval(
+      () =>
+        this.setState({
+          secondsElapsed: this.state.secondsElapsed + 1,
+        })
+      , 1000,
+    );
+  }
   render() {
     return (
-      <div>Stop Watch</div>
+      <div> <h1 className="stopwatch-timer">{formattedSeconds(this.state.secondsElapsed)}</h1>
+        Stop Watch
+        <div><button value="" onClick="startTimer">CLICK TO START OR STOP</button></div>
+        <button value="" onClick="">CLEAR</button>
+      </div>
     );
   }
 }
