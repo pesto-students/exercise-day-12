@@ -31,6 +31,7 @@ class FavoriteMovie extends Component {
   constructor(props) {
     // Properties object is called `props`. You can access it with `this.props`.
     super(props);
+    this.onMovieChange = this.onMovieChange.bind(this);
     this.state = { movie: '' };
 
     // Warning! If we don't bind this method - we would not be able to update state.
