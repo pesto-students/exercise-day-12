@@ -34,10 +34,15 @@ class StopWatch extends Component {
       });
     } else {
       this.timer = setInterval(() => {
-        this.setState({
-          timeElapsed: this.state.timeElapsed + 1,
-        });
+        // this.setState({
+        //   timeElapsed: this.state.timeElapsed + 1,
+        // });
+        this.setState(prevState => ({
+          timeElapsed: prevState.timeElapsed + 1,
+        }));
       }, 1);
+
+
       this.setState({
         isRunning: true,
       });

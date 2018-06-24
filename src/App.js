@@ -17,19 +17,19 @@ const App = () => (
         }}
       >
         <li>
-          <NavLink to="/01" activeClassName="link--active">Life Cycle</NavLink>
+          <NavLink to="01" activeClassName="link--active">Life Cycle</NavLink>
         </li>
         <li>
-          <NavLink to="/02" activeClassName="link--active">Stop Watch</NavLink>
+          <NavLink to="02" activeClassName="link--active">Stop Watch</NavLink>
         </li>
         <li>
-          <NavLink to="/03" activeClassName="link--active">Fetch Github Data</NavLink>
+          <NavLink to="03" activeClassName="link--active">Fetch Github Data</NavLink>
         </li>
+        {/* <li>
+          <NavLink to="04" activeClassName="link--active">Render Props</NavLink>
+        </li> */}
         <li>
-          <NavLink to="/04" activeClassName="link--active">Render Props</NavLink>
-        </li>
-        <li>
-          <NavLink to="/05" activeClassName="link--active">Snake Game</NavLink>
+          <NavLink to="05" activeClassName="link--active">Snake Game</NavLink>
         </li>
       </ul>
       <hr />
