@@ -1,0 +1,11 @@
+.SNAKE {
+  background-color: greenyellow;
+}
+
+.NOT_SNAKE {
+  background-color: black;
+}
+
+.FOOD {
+  background-color: gold;
+}

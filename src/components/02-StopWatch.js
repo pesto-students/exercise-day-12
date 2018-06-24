@@ -18,9 +18,64 @@ import React, { Component } from 'react';
 */
 
 class StopWatch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isRunning: false, timeElapsed: 0 };
+    this.timerHandler = this.timerHandler.bind(this);
+    this.clearHandler = this.clearHandler.bind(this);
+  }
+
+  timerHandler() {
+    if (this.state.isRunning) {
+      clearInterval(this.timer);
+      this.setState({
+        isRunning: false,
+      });
+    } else {
+      this.timer = setInterval(() => {
+        // this.setState({
+        //   timeElapsed: this.state.timeElapsed + 1,
+        // });
+        this.setState(prevState => ({
+          timeElapsed: prevState.timeElapsed + 1,
+        }));
+      }, 1);
+
+
+      this.setState({
+        isRunning: true,
+      });
+    }
+  }
+
+  clearHandler() {
+    clearInterval(this.timer);
+    this.setState({
+      timeElapsed: 0,
+      isRunning: false,
+    });
+  }
+
   render() {
     return (
-      <div>Stop Watch</div>
+      <div>
+        <h2>Stop Watch</h2>
+
+        <div>
+          <p>{this.state.timeElapsed} ms</p>
+
+          <button onClick={this.timerHandler}>
+            {
+              this.state.isRunning ?
+              'Stop' :
+              'Start'
+            }
+          </button>
+
+          <button onClick={this.clearHandler}>Clear</button>
+        </div>
+      </div>
     );
   }
 }

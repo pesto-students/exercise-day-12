@@ -1,5 +1,6 @@
 {
   "name": "react-exercises",
+  "homepage": "http://atpesto.github.io/curriculum-day-12",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -7,10 +8,13 @@
     "build": "react-scripts build",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "gh-pages": "^1.2.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

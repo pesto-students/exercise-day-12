@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import axios from 'axios';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 /**
  * Axios is a promise based HTTP client for the browser and node.js.
@@ -21,18 +21,25 @@ import React, { Component } from 'react';
  */
 /* eslint-disable react/no-unused-state */
 const GithubRepos = ({ repos }) => {
+  const list = repos.map((repo) => {
+    return <li key={repo.id}>{ repo.name }</li>;
+  });
+
   return (
     <ul>
-      {/* Task: The list of repos here */}
+      { list }
     </ul>
   );
-}
+};
 
 // Task: Open the console in the browser. There will be a warning
 // about incorrect prop type for user.
 // Define the correct prop type for the prop `repos`
 GithubRepos.propTypes = {
-
+  repos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 /* eslint-disable react/no-multi-comp */
@@ -43,21 +50,41 @@ class UsernameForm extends Component {
       username: '',
       repos: [],
     };
+
+    this.onClickHandler = this.onClickHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
+
+  onClickHandler() {
+    axios.get(`https://api.github.com/users/${this.state.username}/repos`)
+      .then((res) => {
+        this.setState({ repos: res.data });
+      });
+  }
+
+  onChangeHandler(e) {
+    this.setState({
+      username: e.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
         <input
           type="text"
           name="username"
+          onChange={this.onChangeHandler}
+          value={this.state.username}
         />
         <button
-          onClick={() => {}}
+          onClick={this.onClickHandler}
         >
           Get Repos
         </button>
         {/* Task: Display the results here. Use GithubRepos Component.
           It should be a list of repos of the user entered */}
+        <GithubRepos repos={this.state.repos} />
       </div>
     );
   }
