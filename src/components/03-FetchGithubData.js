@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import axios from 'axios';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 /**
  * Axios is a promise based HTTP client for the browser and node.js.
@@ -22,17 +22,17 @@ import React, { Component } from 'react';
 /* eslint-disable react/no-unused-state */
 const GithubRepos = ({ repos }) => {
   return (
-    <ul>
-      {/* Task: The list of repos here */}
-    </ul>
+    <ol>
+      {repos.map(repo => <li>{repo}</li>)}
+    </ol>
   );
-}
+};
 
 // Task: Open the console in the browser. There will be a warning
 // about incorrect prop type for user.
 // Define the correct prop type for the prop `repos`
 GithubRepos.propTypes = {
-
+  repos: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line
 };
 
 /* eslint-disable react/no-multi-comp */
@@ -40,9 +40,56 @@ class UsernameForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: 'vipulrawat',
       repos: [],
     };
+    this.handleUsername = this.handleUsername.bind(this);
+    this.getData = this.getData.bind(this);
+  }
+  componentDidMount() {
+    const url = `https://api.github.com/users/${this.state.username}/repos`;
+    let newRepos = [];
+    axios.get(url)
+      .then((response) => {
+      // handle success
+        // console.log(response.data);
+        return response.data;
+      })
+      .then((data) => {
+        newRepos = data.map(ob => ob.full_name);
+        this.setState({ repos: newRepos });
+        // console.log(this.state.repos);
+        // console.log(newRepos);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error); // eslint-disable-line
+      });
+    // console.log(newRepos[0].full_name);
+  }
+  getData() {
+    const url = `https://api.github.com/users/${this.state.username}/repos`;
+    let newRepos = [];
+    axios.get(url)
+      .then((response) => {
+      // handle success
+        // console.log(response.data);
+        return response.data;
+      })
+      .then((data) => {
+        newRepos = data.map(ob => ob.full_name);
+        this.setState({ repos: newRepos });
+        // console.log(this.state.repos);
+        // console.log(newRepos);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error); // eslint-disable-line
+      });
+  }
+  handleUsername(e) {
+    e.preventDefault();
+    this.setState({ username: e.target.value });
   }
   render() {
     return (
@@ -50,14 +97,16 @@ class UsernameForm extends Component {
         <input
           type="text"
           name="username"
+          onChange={this.handleUsername}
         />
         <button
-          onClick={() => {}}
+          onClick={this.getData}
         >
           Get Repos
         </button>
         {/* Task: Display the results here. Use GithubRepos Component.
           It should be a list of repos of the user entered */}
+        <GithubRepos repos={this.state.repos} />
       </div>
     );
   }
