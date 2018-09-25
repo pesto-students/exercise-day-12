@@ -20,7 +20,33 @@
  * "if(x<10}(b++;}else{b+=10;}" => false
  */
 
-function braces() {}
+function braces(str) {
+  function matched(opening, closing) {
+    return (
+      (opening === '(' && closing === ')') ||
+      (opening === '{' && closing === '}') ||
+      (opening === '[' && closing === ']')
+    );
+  }
+
+  const openers = ['[', '{', '('];
+  const closers = [']', '}', ')'];
+  const stack = [];
+  for (let i = 0; i < str.length; i += 1) {
+    const openersIdx = openers.indexOf(str[i]);
+    const closersIdx = closers.indexOf(str[i]);
+
+    if (openersIdx >= 0) {
+      stack.push(str[i]);
+    } else if (closersIdx >= 0) {
+      if (stack.length === 0 || !matched(stack.pop(), str[i])) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
 
 /* Q2 (*)
  * input: string
