@@ -85,6 +85,8 @@ function duplicate(input) {
  *      doesEndWith(['b'], ['a', 'b', 'c'])    //=> false
  * */
 function doesEndWith(suffix, str) {
+  if (suffix.length > str.length) return false;
+
   const suffixArg = Array.isArray(suffix) ? suffix.join('') : suffix;
   const strArg = Array.isArray(str) ? str.join('') : str;
 
