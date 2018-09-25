@@ -88,7 +88,6 @@ class GroceryListItem extends React.Component {
     this.setState({ purchased: !this.state.purchased });
   }
   render() {
-    // eslint-disable-next-line
     const { name } = this.props.grocery;
     const color = this.state.purchased ? 'mark' : '';
     return (
@@ -96,7 +95,7 @@ class GroceryListItem extends React.Component {
     );
   }
 }
-GroceryListItem.PropTypes = {   // eslint-disable-line
+GroceryListItem.propTypes = {   // eslint-disable-line
   // grocery: PropTypes.object,
   grocery: PropTypes.shape({
     name: PropTypes.string,
