@@ -49,7 +49,7 @@ class FavoriteMovie extends Component {
   /* eslint-disable no-unused-vars, react/no-unused-state */
   onMovieChange(event) {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: event.target.value });
+    this.setState({ movie: event.target.value });
   }
 
   render() {

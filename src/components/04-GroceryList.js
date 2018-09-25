@@ -24,9 +24,27 @@ class GroceryList extends React.Component {
     super(props);
     this.state = {
       groceries: [{ name: 'Apples' }, { name: 'KitKat' }, { name: 'Red Bull' }],
+      groceryItem: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.clearList = this.clearList.bind(this);
   }
-
+  handleChange(e) {
+    this.setState({ groceryItem: e.target.value });
+  }
+  addItem(e) {
+    e.preventDefault();
+    const newItem = { name: this.state.groceryItem };
+    const currentItems = this.state.groceries;
+    currentItems.push(newItem);
+    this.setState({ groceries: currentItems });
+  }
+  clearList(e) {
+    e.preventDefault();
+    const clearedList = [];
+    this.setState({ groceries: clearedList });
+  }
   render() {
     const { groceries } = this.state;
     /*
@@ -43,9 +61,12 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
+        <input type="text" name="itemName" onChange={this.handleChange} />
+        <input type="button" name="addBtnName" value="Add" onClick={this.addItem} />
         <ul>
           {groceriesComponents}
         </ul>
+        <input type="button" name="clearBtnName" value="Clear list" onClick={this.clearList} />
       </div>
     );
   }
@@ -57,16 +78,29 @@ class GroceryList extends React.Component {
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      purchased: false,
+    };
+    this.purchasedMark = this.purchasedMark.bind(this);
   }
-
+  purchasedMark(e) {
+    e.preventDefault();
+    this.setState({ purchased: !this.state.purchased });
+  }
   render() {
+    // eslint-disable-next-line
+    const { name } = this.props.grocery;
+    const color = this.state.purchased ? 'mark' : '';
     return (
-      <li>s</li>
+      <li key={name} className={color} onClickCapture={this.purchasedMark}>{name}</li>
     );
   }
 }
 GroceryListItem.PropTypes = {   // eslint-disable-line
-  grocery: PropTypes.object,
+  // grocery: PropTypes.object,
+  grocery: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
 };
 // Do prop validation here using the package `prop-types`
 
