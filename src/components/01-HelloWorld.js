@@ -10,7 +10,7 @@ class HelloWorld extends Component {
 
   render() {
     return (
-      <h1>Fill this h1 tag with your heading!</h1>
+      <h1>Welcome to React Task</h1>
     );
   }
 }

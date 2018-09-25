@@ -85,8 +85,8 @@ describe('4 isEmpty', () => {
   });
 
   it('returns true for empty arguments object', () => {
-    expect(isEmpty(((...args) => args)()), true);
-    expect(isEmpty(((...args) => args)(0)), false);
+    expect(isEmpty(((...args) => args)())).toBe(true);
+    expect(isEmpty(((...args) => args)(0))).toBe(false);
   });
 
   it('returns false for every other value', () => {

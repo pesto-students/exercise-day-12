@@ -36,7 +36,18 @@ function braces() {}
  */
 
 function duplicate(input) {
-  return input;
+  const letters = {};
+
+  const max = Array.from(input).reduce((maxAcc, char) => {
+    if (Reflect.has(letters, char)) {
+      letters[char] += 1;
+    } else {
+      letters[char] = 1;
+    }
+
+    return Math.max(letters[char], maxAcc);
+  }, 1);
+  return max > 1 ? max : false;
 }
 
 /* Q3 (*)
@@ -49,7 +60,11 @@ function duplicate(input) {
  *      doesEndWith(['c'], ['a', 'b', 'c'])    //=> true
  *      doesEndWith(['b'], ['a', 'b', 'c'])    //=> false
  * */
-function doesEndWith() {}
+function doesEndWith(subStr, str) {
+  const newSubStr = Array.isArray(subStr) ? subStr.join('') : subStr;
+  const newStr = Array.isArray(str) ? str.join('') : str;
+  return newStr.endsWith(newSubStr);
+}
 
 /* Q4 (*)
  * Returns `true` if the given value is its type's empty value; `false`
@@ -63,7 +78,21 @@ function doesEndWith() {}
  *     isEmpty({ length: 0 }); //=> false
  */
 
-function isEmpty() {}
+function isEmpty(obj) {
+  if (obj === null || obj === undefined) {
+    return false;
+  }
+  if (typeof obj === 'string') {
+    return obj === '';
+  }
+  if (Array.isArray(obj)) {
+    return obj.length === 0;
+  }
+  if (typeof obj === 'object') {
+    return Reflect.ownKeys(obj).length === 0;
+  }
+  return false;
+}
 
 /* Q5
  * Given two strings, determine if they are isomorphic. Two strings are
