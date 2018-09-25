@@ -36,7 +36,17 @@ function braces() {}
  */
 
 function duplicate(input) {
-  return input;
+  const obj = {};
+  for (let i = 0; i < input.length; i += 1) {
+    const char = input.charAt(i);
+    if (obj[char]) {
+      obj[char] += 1;
+    } else {
+      obj[char] = 1;
+    }
+  }
+  // eslint-disable-next-line
+  return Object.keys(obj).reduce((first, second) => (obj[first] > ob[second])? first : second);
 }
 
 /* Q3 (*)
