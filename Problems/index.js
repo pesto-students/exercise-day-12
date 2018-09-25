@@ -122,7 +122,21 @@ function isEmpty(arg) {
  * strings are not isomorphic: "foo" and "bar", "it" and "odd".
  */
 
-function isomorphic() {}
+function isomorphic([s1, s2]) {
+  if (s1.length !== s2.length) return false;
+
+  for (let i = 0; i < s1.length; i += 1) {
+    if (s1[i] !== s2[i]) {
+      for (let j = 0; j < s1.length; j += 1) {
+        if (s1[j] === s1[i] && s2[j] !== s2[i]) {
+          return false;
+        }
+      }
+    }
+  }
+
+  return true;
+}
 
 module.exports = {
   braces,
