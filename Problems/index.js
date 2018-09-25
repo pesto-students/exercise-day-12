@@ -60,7 +60,11 @@ function duplicate(input) {
  *      doesEndWith(['c'], ['a', 'b', 'c'])    //=> true
  *      doesEndWith(['b'], ['a', 'b', 'c'])    //=> false
  * */
-function doesEndWith() {}
+function doesEndWith(subStr, str) {
+  const newSubStr = Array.isArray(subStr) ? subStr.join('') : subStr;
+  const newStr = Array.isArray(str) ? str.join('') : str;
+  return newStr.endsWith(newSubStr);
+}
 
 /* Q4 (*)
  * Returns `true` if the given value is its type's empty value; `false`
@@ -74,7 +78,15 @@ function doesEndWith() {}
  *     isEmpty({ length: 0 }); //=> false
  */
 
-function isEmpty() {}
+function isEmpty(obj) {
+  if (obj === null || obj === undefined) {
+    return false;
+  }
+  if (Array.isArray(obj)) {
+    return obj.length === 0;
+  }
+  return Boolean(obj);
+}
 
 /* Q5
  * Given two strings, determine if they are isomorphic. Two strings are
