@@ -103,7 +103,13 @@ function doesEndWith(suffix, str) {
  *     isEmpty({ length: 0 }); //=> false
  */
 
-function isEmpty() {}
+function isEmpty(arg) {
+  if (arg === null || arg === undefined) return false;
+  if (Array.isArray(arg) || typeof arg === 'string') return arg.length === 0;
+  if (typeof arg === 'object') return Object.keys(arg).length === 0;
+
+  return false;
+}
 
 /* Q5
  * Given two strings, determine if they are isomorphic. Two strings are
