@@ -24,8 +24,16 @@ class GroceryList extends React.Component {
     super(props);
     this.state = {
       groceries: [{ name: 'Apples' }, { name: 'KitKat' }, { name: 'Red Bull' }],
+      // grocery: {},
     };
   }
+  // handleClick(event){
+  //   //this.setState({grogroceries.push({name: temp})})
+  //   console.log(" ");
+  // }
+
+  // onInputChange(event) {
+  // }
 
   render() {
     const { groceries } = this.state;
@@ -43,7 +51,10 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        Put your code here
+        <p>Enter grocery name</p>
+        <input type="text" name="grocery" onChange={this.onInputChange} />
+        <button onClick={this.handleClick} >Add</button>
+        {groceriesComponents}
       </div>
     );
   }
@@ -60,7 +71,7 @@ class GroceryListItem extends React.Component {
   render() {
     return (
       <li>
-        Put your code here.
+        {this.props.grocery.name}
       </li>
     );
   }
