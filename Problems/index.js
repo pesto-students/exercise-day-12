@@ -82,10 +82,16 @@ function isEmpty(obj) {
   if (obj === null || obj === undefined) {
     return false;
   }
+  if (typeof obj === 'string') {
+    return obj === '';
+  }
   if (Array.isArray(obj)) {
     return obj.length === 0;
   }
-  return Boolean(obj);
+  if (typeof obj === 'object') {
+    return Reflect.ownKeys(obj).length === 0;
+  }
+  return false;
 }
 
 /* Q5
