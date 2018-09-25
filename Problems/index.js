@@ -62,7 +62,16 @@ function braces(str) {
  */
 
 function duplicate(input) {
-  return input;
+  const freqs = {};
+  let maxFreq = 0;
+
+  for (let i = 0; i < input.length; i += 1) {
+    if (!Reflect.has(freqs, input[i])) freqs[input[i]] = 0;
+    freqs[input[i]] += 1;
+    maxFreq = Math.max(maxFreq, freqs[input[i]]);
+  }
+
+  return maxFreq <= 1 ? false : maxFreq;
 }
 
 /* Q3 (*)
