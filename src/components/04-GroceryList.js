@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 /*
   In this exercises, you'll will make a reactive grocery list.
 
@@ -43,7 +43,9 @@ class GroceryList extends React.Component {
     // Hint: Don't forget about putting items into `ul`
     return (
       <div>
-        Put your code here
+        <ul>
+          {groceriesComponents}
+        </ul>
       </div>
     );
   }
@@ -59,13 +61,13 @@ class GroceryListItem extends React.Component {
 
   render() {
     return (
-      <li>
-        Put your code here.
-      </li>
+      <li>s</li>
     );
   }
 }
-
+GroceryListItem.PropTypes = {   // eslint-disable-line
+  grocery: PropTypes.object,
+};
 // Do prop validation here using the package `prop-types`
 
 export default GroceryList;
