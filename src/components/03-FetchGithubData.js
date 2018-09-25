@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import axios from 'axios';
+import axios from 'axios';
 
 /**
  * Axios is a promise based HTTP client for the browser and node.js.
@@ -20,20 +20,20 @@ import React, { Component } from 'react';
  *  https://api.github.com/users/{username}/repos
  */
 /* eslint-disable react/no-unused-state */
-const GithubRepos = ({ repos }) => {
-  return (
-    <ul>
-      {/* Task: The list of repos here */}
-    </ul>
-  );
-}
+// const GithubRepos = ({ repos }) => {
+//   return (
+//     <ul>
+//       {/* Task: The list of repos here */}
+//     </ul>
+//   );
+// }
 
 // Task: Open the console in the browser. There will be a warning
 // about incorrect prop type for user.
 // Define the correct prop type for the prop `repos`
-GithubRepos.propTypes = {
+// GithubRepos.propTypes = {
 
-};
+// };
 
 /* eslint-disable react/no-multi-comp */
 class UsernameForm extends Component {
@@ -42,7 +42,21 @@ class UsernameForm extends Component {
     this.state = {
       username: '',
       repos: [],
+      name: '',
     };
+    this.onInputChange = this.onInputChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidUpdate() {
+    axios.get(`https://api.github.com/users/${this.state.username}/repos`)
+      .then(res => console.log(res));
+  }
+  onInputChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  handleClick() {
+    this.setState({ username: this.state.name });
   }
   render() {
     return (
@@ -50,9 +64,10 @@ class UsernameForm extends Component {
         <input
           type="text"
           name="username"
+          onChange={this.onInputChange}
         />
         <button
-          onClick={() => {}}
+          onClick={this.handleClick}
         >
           Get Repos
         </button>
