@@ -36,7 +36,18 @@ function braces() {}
  */
 
 function duplicate(input) {
-  return input;
+  const letters = {};
+
+  const max = Array.from(input).reduce((maxAcc, char) => {
+    if (Reflect.has(letters, char)) {
+      letters[char] += 1;
+    } else {
+      letters[char] = 1;
+    }
+
+    return Math.max(letters[char], maxAcc);
+  }, 1);
+  return max > 1 ? max : false;
 }
 
 /* Q3 (*)
