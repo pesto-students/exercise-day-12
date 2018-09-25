@@ -127,13 +127,13 @@ function isEmpty(arg) {
 function isomorphic([s1, s2]) {
   if (s1.length !== s2.length) return false;
 
+  const matched = {};
+
   for (let i = 0; i < s1.length; i += 1) {
-    if (s1[i] !== s2[i]) {
-      for (let j = 0; j < s1.length; j += 1) {
-        if (s1[j] === s1[i] && s2[j] !== s2[i]) {
-          return false;
-        }
-      }
+    if (!Reflect.has(matched, s1[i])) {
+      matched[s1[i]] = s2[i];
+    } else if (matched[s1[i]] !== s2[i]) {
+      return false;
     }
   }
 
