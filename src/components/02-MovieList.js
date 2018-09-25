@@ -12,8 +12,10 @@ class MovieList extends Component {
   // Refer to App.css for a list a classes or add one yourself
   render() {
     return (
-      <ul className="FILL ME">
+      <ul className="ovies-list">
         <li>The Godfather</li>
+        <li>The Lord of the Rings</li>
+        <li>Catch Me If You Can</li>
       </ul>
     );
   }

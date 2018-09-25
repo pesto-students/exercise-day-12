@@ -47,9 +47,9 @@ class FavoriteMovie extends Component {
   */
 
   /* eslint-disable no-unused-vars, react/no-unused-state */
-  onMovieChange(event) {
+  onMovieChange = (event) => {
     // Huh... There's something wrong here...
-    this.setState({ badAttribute: 'ChangeME!' });
+    this.setState({ movie: event.target.value });
   }
 
   render() {
@@ -57,6 +57,10 @@ class FavoriteMovie extends Component {
       <div>
         <p>My favorite movie is <span style={{ color: 'blue' }}>{this.state.movie}</span></p>
         <input type="text" name="name" onChange={this.onMovieChange} />
+        { (this.state.movie.length === 0) ? (
+          <p>Hey there. Enter your favorite movie.</p>
+        ) : ''
+        }
       </div>
     );
   }
