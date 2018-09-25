@@ -16,11 +16,20 @@ import React, { Component } from 'react';
 *
 *  Clicking Clear will stop the timer if it's running and reset the lapsed time to 0.
 */
-
+/* eslint-disable react/no-unused-state */
 class StopWatch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+    // this.handleClick = this.handleClick.bind(this);
+  }
+
   render() {
     return (
-      <div>Stop Watch</div>
+      <div>
+        <button>Start</button>
+        <button>Stop</button>
+      </div>
     );
   }
 }
