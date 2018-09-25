@@ -84,7 +84,12 @@ function duplicate(input) {
  *      doesEndWith(['c'], ['a', 'b', 'c'])    //=> true
  *      doesEndWith(['b'], ['a', 'b', 'c'])    //=> false
  * */
-function doesEndWith() {}
+function doesEndWith(suffix, str) {
+  const suffixArg = Array.isArray(suffix) ? suffix.join('') : suffix;
+  const strArg = Array.isArray(str) ? str.join('') : str;
+
+  return strArg.substr(strArg.length - suffixArg.length) === suffixArg;
+}
 
 /* Q4 (*)
  * Returns `true` if the given value is its type's empty value; `false`
