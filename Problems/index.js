@@ -46,7 +46,7 @@ function duplicate(input) {
     }
   }
   // eslint-disable-next-line
-  return Object.keys(obj).reduce((first, second) => (obj[first] > ob[second])? first : second);
+  return Object.keys(obj).reduce((first, second) => (obj[first] > obj[second])? first : second);
 }
 
 /* Q3 (*)
