@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import axios from 'axios';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 /**
  * Axios is a promise based HTTP client for the browser and node.js.
@@ -23,16 +23,16 @@ import React, { Component } from 'react';
 const GithubRepos = ({ repos }) => {
   return (
     <ul>
-      {/* Task: The list of repos here */}
+      {repos.map(repo => <li key={repo.name}>{repo.name}</li>)}
     </ul>
   );
-}
+};
 
 // Task: Open the console in the browser. There will be a warning
 // about incorrect prop type for user.
 // Define the correct prop type for the prop `repos`
 GithubRepos.propTypes = {
-
+  repos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 /* eslint-disable react/no-multi-comp */
@@ -40,24 +40,49 @@ class UsernameForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: 'ackinc',
       repos: [],
     };
+
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.getRepos = this.getRepos.bind(this);
   }
+
+  componentDidMount() {
+    this.getRepos();
+  }
+
+  getRepos() {
+    const url = `https://api.github.com/users/${this.state.username}/repos`;
+    axios.get(url)
+      .then((response) => {
+        this.setState({ repos: response.data });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line
+        console.error(error)
+      });
+  }
+
+  handleUsernameChange(e) {
+    this.setState({ username: e.target.value });
+  }
+
   render() {
     return (
       <div>
         <input
           type="text"
           name="username"
+          onChange={this.handleUsernameChange}
+          value={this.state.username}
         />
         <button
-          onClick={() => {}}
+          onClick={this.getRepos}
         >
           Get Repos
         </button>
-        {/* Task: Display the results here. Use GithubRepos Component.
-          It should be a list of repos of the user entered */}
+        <GithubRepos repos={this.state.repos} />
       </div>
     );
   }
