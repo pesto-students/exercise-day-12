@@ -20,7 +20,33 @@
  * "if(x<10}(b++;}else{b+=10;}" => false
  */
 
-function braces() {}
+function braces(str) {
+  function matched(opening, closing) {
+    return (
+      (opening === '(' && closing === ')') ||
+      (opening === '{' && closing === '}') ||
+      (opening === '[' && closing === ']')
+    );
+  }
+
+  const openers = ['[', '{', '('];
+  const closers = [']', '}', ')'];
+  const stack = [];
+  for (let i = 0; i < str.length; i += 1) {
+    const openersIdx = openers.indexOf(str[i]);
+    const closersIdx = closers.indexOf(str[i]);
+
+    if (openersIdx >= 0) {
+      stack.push(str[i]);
+    } else if (closersIdx >= 0) {
+      if (stack.length === 0 || !matched(stack.pop(), str[i])) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
 
 /* Q2 (*)
  * input: string
@@ -36,7 +62,16 @@ function braces() {}
  */
 
 function duplicate(input) {
-  return input;
+  const freqs = {};
+  let maxFreq = 0;
+
+  for (let i = 0; i < input.length; i += 1) {
+    if (!Reflect.has(freqs, input[i])) freqs[input[i]] = 0;
+    freqs[input[i]] += 1;
+    maxFreq = Math.max(maxFreq, freqs[input[i]]);
+  }
+
+  return maxFreq <= 1 ? false : maxFreq;
 }
 
 /* Q3 (*)
@@ -49,7 +84,14 @@ function duplicate(input) {
  *      doesEndWith(['c'], ['a', 'b', 'c'])    //=> true
  *      doesEndWith(['b'], ['a', 'b', 'c'])    //=> false
  * */
-function doesEndWith() {}
+function doesEndWith(suffix, str) {
+  if (suffix.length > str.length) return false;
+
+  const suffixArg = Array.isArray(suffix) ? suffix.join('') : suffix;
+  const strArg = Array.isArray(str) ? str.join('') : str;
+
+  return strArg.substr(strArg.length - suffixArg.length) === suffixArg;
+}
 
 /* Q4 (*)
  * Returns `true` if the given value is its type's empty value; `false`
@@ -63,7 +105,13 @@ function doesEndWith() {}
  *     isEmpty({ length: 0 }); //=> false
  */
 
-function isEmpty() {}
+function isEmpty(arg) {
+  if (arg === null || arg === undefined) return false;
+  if (Array.isArray(arg) || typeof arg === 'string') return arg.length === 0;
+  if (typeof arg === 'object') return Object.keys(arg).length === 0;
+
+  return false;
+}
 
 /* Q5
  * Given two strings, determine if they are isomorphic. Two strings are
@@ -76,7 +124,21 @@ function isEmpty() {}
  * strings are not isomorphic: "foo" and "bar", "it" and "odd".
  */
 
-function isomorphic() {}
+function isomorphic([s1, s2]) {
+  if (s1.length !== s2.length) return false;
+
+  const matched = {};
+
+  for (let i = 0; i < s1.length; i += 1) {
+    if (!Reflect.has(matched, s1[i])) {
+      matched[s1[i]] = s2[i];
+    } else if (matched[s1[i]] !== s2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 module.exports = {
   braces,
